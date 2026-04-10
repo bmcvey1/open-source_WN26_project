@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue'
-import type { Restaurant } from '../types/restaurant'
+import type { Restaurant } from '../types/restaurants'
+
 
 const props = defineProps<{
   restaurant: Restaurant | null
