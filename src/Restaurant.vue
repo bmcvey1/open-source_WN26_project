@@ -28,7 +28,7 @@ const preferences = {
   ratings: 4.0,
   available: 3.2,
   price: 4.3,
-  preferred_price: 2,
+  preferred_price: 3,
   fav: ['italian'],
   res: [],
   filRes: false,
