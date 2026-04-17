@@ -47,14 +47,14 @@ const rankedRestaurants = computed(() =>
 
     <template v-else>
       <CarouselRow
-        title="Top suggestions based on your preferences"
+        title="Top suggestions based on your preferences (with algorithm)"
         :items="rankedRestaurants"
         @select="openModal"
       />
 
       <CarouselRow
-        title="Users top choices"
-        :items="rankedRestaurants"
+        title="W/O Our Algorithm"
+        :items="restaurants"
         @select="openModal"
       />
     </template>
