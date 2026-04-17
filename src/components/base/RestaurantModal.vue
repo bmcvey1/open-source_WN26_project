@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue'
-import type { Restaurant } from '../types/restaurant'
+import type { Restaurant } from '../types/restaurants'
+
 
 const props = defineProps<{
   restaurant: Restaurant | null
@@ -21,7 +22,7 @@ const emit = defineEmits(['close'])
           ⭐ {{ restaurant.rating }} • {{ restaurant.price }}
         </div>
 
-        <div class="hours">
+        <div class="hours" v-if="restaurant.hours">
           Hours: {{ restaurant.hours.open }} – {{ restaurant.hours.close }}
         </div>
 
@@ -42,6 +43,15 @@ const emit = defineEmits(['close'])
           >
             Website
           </a>
+          
+          <a
+            v-if="restaurant.restrictions"
+            :href="restaurant.website"
+            target="_blank"
+            class="btn secondary"
+          >
+            Website
+          </a>
         </div>
       </div>
     </div>
@@ -56,6 +66,7 @@ const emit = defineEmits(['close'])
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9999
 }
 
 .modal {

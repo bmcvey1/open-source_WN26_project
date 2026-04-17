@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
-import type { Restaurant } from '../types/restaurants'
+import type { Restaurant } from '../types/restaurants' 
 import 'vue3-carousel/carousel.css'
 
 defineProps<{
   title: string
   items: Restaurant[]
+}>()
+
+const emit = defineEmits<{
+  (e: 'select', restaurant: Restaurant): void
 }>()
 
 const config = {
@@ -32,19 +35,21 @@ const config = {
 
     <Carousel v-bind="config">
       <Slide v-for="item in items" :key="item.id">
-        <div class="card">
+        <div class="card" @click.stop="emit('select', item)">
           <img :src="item.image" class="image" />
 
           <div class="overlay">
             <div class="top">
               <span class="rating">⭐ {{ item.rating }}</span>
-              <span class="price">{{ item.price }}</span>
+              <span class="rating">{{ item.distance }} miles</span>
+              <span class="price">{{ item.price_string }}</span>
             </div>
 
             <div class="bottom">
               <div class="name">{{ item.name }}</div>
+              
               <div class="time">
-                {{ item.availableTimes[0] }}
+                {{ item.hours.open }} – {{item.hours.close}}
               </div>
             </div>
           </div>
